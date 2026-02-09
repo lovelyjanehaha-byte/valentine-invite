@@ -3,80 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Invitation ❤️</title>
+<title>Valentine</title>
 
 <style>
     body {
-        margin: 0;
-  font-family: Arial, sans-serif;
-
-  background-image: url("bg.png.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-}
-
-        height: 100vh;
+        font-family: Arial, sans-serif;
+        background: #ffe6eb;
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
-        color: white;
-        overflow: hidden;
+        height: 100vh;
+        margin: 0;
     }
 
     .card {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        animation: fadeIn 2s ease;
-        max-width: 400px;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        position: relative;
+        width: 350px;
     }
 
-    h1 {
-        font-size: 2.5em;
-        margin-bottom: 10px;
+    img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
     }
 
-    p {
-        font-size: 1.2em;
-        margin: 8px 0;
-    }
-
-    .heart {
-        font-size: 40px;
-        animation: heartbeat 1.5s infinite;
+    h2 {
+        color: #b3003b;
     }
 
     button {
-        margin-top: 20px;
         padding: 12px 25px;
         border: none;
-        border-radius: 20px;
-        font-size: 18px;
+        border-radius: 25px;
+        font-size: 16px;
         cursor: pointer;
-        background: #ff4fa3;
+        margin: 10px;
+        transition: 0.2s;
+    }
+
+    #yesBtn {
+        background: #ff4d6d;
         color: white;
-        transition: 0.3s;
     }
 
-    button:hover {
-        background: #ff2a8c;
-        transform: scale(1.05);
-    }
-
-    @keyframes heartbeat {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
+    #noBtn {
+        background: white;
+        color: #ff4d6d;
+        border: 2px solid #ff4d6d;
+        position: absolute;
+        right: 40px;
+        top: 250px;
     }
 </style>
 </head>
@@ -84,40 +65,40 @@
 <body>
 
 <div class="card">
-    <div class="heart">❤️</div>
+    <img src="bg.jpg" alt="Valentine Photo">
 
-    <h1>Lyca Jamille</h1>
+    <h2>Will you be my Valentine? ❤️</h2>
 
-    <p>February 14 • 5:00 PM</p>
-    <p>SM Tanza</p>
-
-    <h2>Will you be my Valentine? 💖</h2>
-
-    <button onclick="alert('Yay! See you on Valentine’s Day ❤️')">
-        Accept Invitation
-    </button>
+    <button id="yesBtn" onclick="yesClicked()">Yes 🌹</button>
+    <button id="noBtn">No 🙅‍♂️</button>
 </div>
 
-    <div class="heart">❤️</div>
-    <h1>Lyca Jamille</h1>
+<script>
+    const noBtn = document.getElementById("noBtn");
 
-    <p>February 14 • 5:00 PM</p>
-    <p>SM Tanza</p>
+    document.addEventListener("mousemove", (e) => {
 
-    <h2>Will you be my Valentine? 💖</h2>
+        const rect = noBtn.getBoundingClientRect();
 
-    <button onclick="alert('Yay! See you on Valentine’s Day ❤️')">
-        Accept Invitation
-    </button>
-</div>
+        const distance = Math.hypot(
+            e.clientX - (rect.left + rect.width / 2),
+            e.clientY - (rect.top + rect.height / 2)
+        );
 
-<!-- Background Music -->
-<audio autoplay loop>
-    <source src="love-dont-change.mp3" type="audio/mp3">
-</audio>
+        if (distance < 140) {
+            const maxX = window.innerWidth - 120;
+            const maxY = window.innerHeight - 60;
+
+            noBtn.style.position = "fixed";
+            noBtn.style.left = Math.random() * maxX + "px";
+            noBtn.style.top = Math.random() * maxY + "px";
+        }
+    });
+
+    function yesClicked() {
+        alert("Yay! ❤️ Love you!");
+    }
+</script>
 
 </body>
 </html>
-
-
-
